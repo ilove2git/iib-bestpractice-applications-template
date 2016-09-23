@@ -1,0 +1,18 @@
+version: '2'
+services:
+  sampleappwithcustomconfig:
+    image: ${REPO}iib-sample-app-with-customconfig:1.0.0
+    build: ./sampleAppWithCustomeConfig/
+    environment:
+      - LICENSE=accept
+      - IIBADMINPW=password
+      - IIBOBSERVERPW=password
+      - TRACEMODE=off
+  sampleappwithoutcustomconfig:
+    image: ${REPO}iib-sample-app-without-customconfig:1.0.0
+    build: ./sampleAppWithoutCustomeConfig/
+    environment:
+      - LICENSE=accept
+      - IIBADMINPW=password
+      - IIBOBSERVERPW=password
+      - TRACEMODE=off
