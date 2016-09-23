@@ -2,8 +2,8 @@
 This repository includes a docker image framework for IBM Integration Bus according to [container best practices](http://developers.redhat.com/blog/2016/02/24/10-things-to-avoid-in-docker-containers/).
 
 The Framework exists of two Layers:
-  - RuntimeLayer: This repository includes the different Runtime Images that are prepared and are the foundation for the the AppLayer the developer is only concerted with the AppLayer. This images should not change often.
-  - AppLayer: This repository include a template for a developer to develop his own immutable image for his applications.
+  - [RuntimeLayer](https://github.com/dennisseidel/iib-bestpractice-runtimes): This repository includes the different Runtime Images that are prepared and are the foundation for the the AppLayer the developer is only concerted with the AppLayer. This images should not change often.
+  - [AppLayer](https://github.com/dennisseidel/iib-bestpractice-applications-template): This repository include a template for a developer to develop his own immutable image for his applications.
 
 This include the sampleAppname as a template for the developer to develop his own immutable image by doing the following:
 
@@ -36,7 +36,7 @@ and test and then do a `docker-compose push` to the container repository.
   - Create a stage specific volume/configmap under `/usr/local/bin/customconfig.sh` into your container (for the content see the example customconfig.sh).
   - Create a stage specific volume/configmap under `/usr/local/bin/customconfig.sh` into your container (for the content see the example customconfig.sh).
   - Create stage specific volumes/configmaps for the properties file for every bar file you want to overwrite something under `/iibProperties/` into your container.
-    - Properties files are create with the `mqisreadbar -b ./path/to/barfile.bar -r > barfile.properties`. 
+    - Properties files are create with the `mqisreadbar -b ./path/to/barfile.bar -r > barfile.properties`.
   - Mount Keystores into ... COMING SOON.
 *Remember: When changing something, create new image, stage and test it and deploy it, DON'T change a running container.*
 
