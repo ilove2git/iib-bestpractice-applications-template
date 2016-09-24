@@ -24,7 +24,11 @@ This include the sampleAppname as a template for the developer to develop his ow
 5. Decide if you want to switch features on or off by setting environment variables:
     - TRACEMODE: this can be set `on` or `off` and en/disables trace nodes.
     - LICENSE: this must be set to `accept` indicated that you accepted the IBM License Agreement
-    - more coming soon ...
+    - GLOBALCACHE: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured this requires the following environment variables to be set:
+      - GC_USER: username to connect to IBM Extreme Scale
+      - GC_PASSWD: password to connect to IBM Extreme Scale
+      - GC_CATALOGENDPOINT: catalogendpoint to connect to IBM Extreme Scale
+      - GC_GRIDNAME gridname to connect to IBM Extreme Scale
 
 6. Build the image with a `docker-compose build`.
 7. Start the container locally with `docker-compose up` and test the application locally before checking your code into a
