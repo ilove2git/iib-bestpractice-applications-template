@@ -46,3 +46,6 @@ and test and then do a `docker-compose push` to the container repository.
 
 # Development Best Pratices for IIB on a Container Runtime Plattform
 1. Don't use [features](http://www.ibm.com/support/knowledgecenter/en/SSMKHH_10.0.0/com.ibm.etools.mft.doc/ah09088_.htm) that require a MQ Queue Manager in direct binding in the same image.
+2. Structure you flow logic that it can scaled independently with [CallableFlow](http://www.ibm.com/support/knowledgecenter/SSMKHH_10.0.0/com.ibm.iib.cloud.doc/cl00029_.htm) into the following parts:
+  - CallingFlow: This includes one input node, (a mapping to the structure of the callableFlow, this allows for different input node to call the same flow logic), the CallableFlowInvoke, (a mapping to the response structure if necessary) and the output node.
+  - CallableFlow: CallableInput, FlowLogic, CallableOutput.  
