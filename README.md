@@ -22,20 +22,22 @@ This include the sampleAppname as a template for the developer to develop his ow
       - can read only
       - password must be set through the pw.sh with the defintion of IIBOBSERVERPW variable
 5. Decide if you want to switch features on or off by setting environment variables:
-    - TRACEMODE: this can be set `on` or `off` and en/disables trace nodes.
-    - LICENSE: this must be set to `accept` indicated that you accepted the IBM License Agreement
-    - GLOBALCACHE: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured this requires the following environment variables to be set:
-      - GC_USER: username to connect to IBM Extreme Scale
-      - GC_PASSWD: password to connect to IBM Extreme Scale
-      - GC_CATALOGENDPOINT: catalogendpoint to connect to IBM Extreme Scale
-      - GC_GRIDNAME gridname to connect to IBM Extreme Scale
-
-6. Build the image with a `docker-compose build`.
-7. Start the container locally with `docker-compose up` and test the application locally before checking your code into a
+		- `TRACEMODE`: this can be set `on` or `off` and en/disables trace nodes.
+    - `LICENSE`: this must be set to `accept` indicated that you accepted the IBM License Agreement
+    - `GLOBALCACHE`: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured this requires the following environment variables to be set:
+      - `GC_USER`: username to connect to IBM Extreme Scale
+      - `GC_PASSWD`: password to connect to IBM Extreme Scale
+      - `GC_CATALOGENDPOINT`: catalogendpoint to connect to IBM Extreme Scale
+      - `GC_GRIDNAME`: gridname to connect to IBM Extreme Scale
+		The PKI Infrastructure can be configured as follows:
+			- 
+6. Add an optional keystore image under `/secret/keystore.jks` to enable HTTPS or SSL MQ.
+7. Build the image with a `docker-compose build`.
+8. Start the container locally with `docker-compose up` and test the application locally before checking your code into a
 repository like github or a container repository.
-8. If everything is ok a developer should check his source code into his git repo and his build tool like jenkins should build
+9. If everything is ok a developer should check his source code into his git repo and his build tool like jenkins should build
 and test and then do a `docker-compose push` to the container repository.
-9. Next prepare your stage where you deploy to.
+10. Next prepare your stage where you deploy to.
   - Create a stage specific volume/secret under `/secret/pw.sh` into your container (for the content see the example `pw.sh`).
   - Create a stage specific volume/configmap under `/usr/local/bin/customconfig.sh` into your container (for the content see the example customconfig.sh).
   - Create a stage specific volume/configmap under `/usr/local/bin/customconfig.sh` into your container (for the content see the example customconfig.sh).
