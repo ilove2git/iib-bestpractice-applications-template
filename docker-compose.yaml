@@ -4,15 +4,23 @@ services:
     image: ${REPO}iib-sample-app-with-customconfig:1.0.0
     build: ./sampleAppWithCustomeConfig/
     environment:
-      - LICENSE=accept
-      - IIBADMINPW=password
-      - IIBOBSERVERPW=password
-      - TRACEMODE=off
+      - IIB_LICENSE=accept
+      - IIB_ADMINPW=password
+      - IIB_OBSERVERPW=password
+      - IIB_TRACEMODE=off
+    ports:
+      - "4414:4414"
+      - "7800:7800"
+      - "7843:7843"
   sampleappwithoutcustomconfig:
     image: ${REPO}iib-sample-app-without-customconfig:1.0.0
     build: ./sampleAppWithoutCustomeConfig/
     environment:
-      - LICENSE=accept
-      - IIBADMINPW=password
-      - IIBOBSERVERPW=password
-      - TRACEMODE=off
+      - IIB_LICENSE=accept
+      - IIB_ADMINPW=password
+      - IIB_OBSERVERPW=password
+      - IIB_TRACEMODE=off
+    ports:
+      - "4415:4414"
+      - "7801:7800"
+      - "7844:7843"
