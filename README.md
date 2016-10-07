@@ -1,4 +1,4 @@
-## The IBM Integration Bus Docker Framework - AppLayer (DeveloperTemplate)
+## The IBM Integration Bus Docker Framework - AppLayer (DeveloperTemplate) *ALPHA*
 This repository includes a docker image framework for IBM Integration Bus according to [container best practices](http://developers.redhat.com/blog/2016/02/24/10-things-to-avoid-in-docker-containers/).
 
 The Framework exists of two Layers:
