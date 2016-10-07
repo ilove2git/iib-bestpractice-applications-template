@@ -30,22 +30,22 @@ This include the *sampleAppname* as a **template** for the developer to develop 
 
 ### Image Configuration and Customization Options
 
-5. Decide if you want to switch features on or off by setting environment variables:
-		- IIB_TRACEMODE: this can be set to `on` or `off` to en/disable trace nodes.
-		- IIB_LICENSE: this must be set to `accept` to indicate that you accepted the IBM License Agreement
-		- IIB_SKIPDEPLOY: Skip deployment of IIB applications, useful in development
-		- IIB_GLOBALCACHE: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured. This requires the following environment variables to be set:
-			- IIB_GC_USER: username to connect to IBM Extreme Scale
-			- IIB_GC_PASSWD: password to connect to IBM Extreme Scale
-			- IIB_GC_CATALOGENDPOINT: catalogendpoint to connect to IBM Extreme Scale
-			- IIB_GC_GRIDNAME gridname to connect to IBM Extreme Scale
+- Decide if you want to switch features on or off by setting environment variables:
+    - `IIB_TRACEMODE`: this can be set to `on` or `off` to en/disable trace nodes.
+    - `IIB_LICENSE`: this must be set to `accept` to indicate that you accepted the IBM License Agreement
+    - `IIB_SKIPDEPLOY`: Skip deployment of IIB applications, useful in development
+    - `IIB_GLOBALCACHE`: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured. This requires the following environment variables to be set:
+      - `IIB_GC_USER`: username to connect to IBM Extreme Scale
+      - `IIB_GC_PASSWD`: password to connect to IBM Extreme Scale
+      - `IIB_GC_CATALOGENDPOINT`: catalogendpoint to connect to IBM Extreme Scale
+      - `IIB_GC_GRIDNAME`: gridname to connect to IBM Extreme Scale
 		The PKI Infrastructure can be configured as follows by setting the following env variables the iib configuration will be done by the base image automatically if both variables are available and the keystore:
 			- `IIB_KEYSTOREPW`: the keystore password, can be set as an environment variable or in the `pw.sh` file mounted under `/secret/pw.sh`.
 			- `IIB_TRUSTSTOREPW`: the truststore password, can be set as an environment variable or in the `pw.sh` file mounted under `/secret/pw.sh`.
 			- Add a keystore and truststore under `/secret/keystore.jks` and `/secret/truststore.jks` to enable HTTPS or SSL MQ.
 - Exposed Ports:
-		- 4414: Port of the IIB Admin WebUi and for remote debugging in IBM Integration Bus Toolkit
-		- 7800: Port of the HTTP Listener
+    - `4414`: Port of the IIB Admin WebUi and for remote debugging in IBM Integration Bus Toolkit
+    - `7800`: Port of the HTTP Listener
 
 
 ### Build and Staging
@@ -61,6 +61,7 @@ and test and then do a `docker-compose push` to the container repository.
   - Create stage specific volumes/configmaps for the properties file for every bar file you want to overwrite something under `/iibProperties/` into your container.
     - Properties files are create with the `mqisreadbar -b ./path/to/barfile.bar -r > barfile.properties`.
   - Mount Keystores into ... COMING SOON.
+
 *Remember: When changing something, create new image, stage and test it and deploy it, DON'T change a running container.*
 
 # Development Best Pratices for IIB on a Container Runtime Plattform
