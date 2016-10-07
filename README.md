@@ -5,13 +5,19 @@ The Framework exists of two Layers:
   - [RuntimeLayer](https://github.com/dennisseidel/iib-bestpractice-runtimes): This repository includes the different Runtime Images that are prepared and are the foundation for the the AppLayer the developer is only concerted with the AppLayer. This images should not change often.
   - [AppLayer](https://github.com/dennisseidel/iib-bestpractice-applications-template): This repository include a template for a developer to develop his own immutable image for his applications.
 
-This include the sampleAppname as a template for the developer to develop his own immutable image by doing the following:
+
+
+### Use of this Template Repository
+
+This include the *sampleAppname* as a **template** for the developer to develop his own immutable image by doing the following:
 
 1. Check out this repo and rename `sampleAppname` your application name. Update also the build path in the docker-compose file to point to your application.
 2. Set the environment variables in the `env` file and run it in your terminal `. ./env`. Including:
   - REPO: the domain of your docker repository you want to push to if empty it used docker hub.
 3. update the version number of the appiciation in the docker-compose file e.g. `${REPO}iib-sample-app-with-customconfig:1.0.0`
 4. Decide if you need a `customeconfig.sh` because you need to send other setting when starting IIB, by default it creates an instance with the following config:
+
+### Default config of the [runtime images iib-10.0.0.6-mqclient / iib-10.0.0.6](https://github.com/dennisseidel/iib-bestpractice-runtimes)
   - nodename: MYNODE
 	- integrationservername: default
 	- two users for the webadminui, also to be used when connecting from IIB Toolkit to the Integrationnode:
@@ -21,6 +27,9 @@ This include the sampleAppname as a template for the developer to develop his ow
 		- observer:
 			- can read only
 			- password must be set by definining it in the IIB_OBSERVERPW variable
+
+### Image Configuration and Customization Options
+
 5. Decide if you want to switch features on or off by setting environment variables:
 		- IIB_TRACEMODE: this can be set to `on` or `off` to en/disable trace nodes.
 		- IIB_LICENSE: this must be set to `accept` to indicate that you accepted the IBM License Agreement
@@ -37,6 +46,9 @@ This include the sampleAppname as a template for the developer to develop his ow
 - Exposed Ports:
 		- 4414: Port of the IIB Admin WebUi and for remote debugging in IBM Integration Bus Toolkit
 		- 7800: Port of the HTTP Listener
+
+
+### Build and Staging
 7. Build the image with a `docker-compose build`.
 8. Start the container locally with `docker-compose up` and test the application locally before checking your code into a
 repository like github or a container repository.
