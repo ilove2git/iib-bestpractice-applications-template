@@ -1,4 +1,4 @@
-FROM iib-runtime:10.0.0.6-mqclient
+FROM dennisseidel/iib-bestpractice-runtimes:10.0.0.6-mqclient
 
 MAINTAINER Dennis Seidel mail@dennisseidel.de
 

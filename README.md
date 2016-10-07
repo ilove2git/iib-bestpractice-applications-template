@@ -13,25 +13,30 @@ This include the sampleAppname as a template for the developer to develop his ow
 3. update the version number of the appiciation in the docker-compose file e.g. `${REPO}iib-sample-app-with-customconfig:1.0.0`
 4. Decide if you need a `customeconfig.sh` because you need to send other setting when starting IIB, by default it creates an instance with the following config:
   - nodename: MYNODE
-  - integrationservername: default
-  - two user for the webadminui also to be used when connection from IIB Toolkit to the Integrationnode:
-    - admin:
-      - can read, write, execute
-      - password must be set through the pw.sh with the defintion of IIBADMINPW variable
-    - observer:
-      - can read only
-      - password must be set through the pw.sh with the defintion of IIBOBSERVERPW variable
+	- integrationservername: default
+	- two users for the webadminui, also to be used when connecting from IIB Toolkit to the Integrationnode:
+		- admin:
+			- can read, write, execute
+			- password must be set by definining it in the IIB_ADMINPW variable
+		- observer:
+			- can read only
+			- password must be set by definining it in the IIB_OBSERVERPW variable
 5. Decide if you want to switch features on or off by setting environment variables:
-		- `TRACEMODE`: this can be set `on` or `off` and en/disables trace nodes.
-    - `LICENSE`: this must be set to `accept` indicated that you accepted the IBM License Agreement
-    - `GLOBALCACHE`: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured this requires the following environment variables to be set:
-      - `GC_USER`: username to connect to IBM Extreme Scale
-      - `GC_PASSWD`: password to connect to IBM Extreme Scale
-      - `GC_CATALOGENDPOINT`: catalogendpoint to connect to IBM Extreme Scale
-      - `GC_GRIDNAME`: gridname to connect to IBM Extreme Scale
-		The PKI Infrastructure can be configured as follows:
-			- 
-6. Add an optional keystore image under `/secret/keystore.jks` to enable HTTPS or SSL MQ.
+		- IIB_TRACEMODE: this can be set to `on` or `off` to en/disable trace nodes.
+		- IIB_LICENSE: this must be set to `accept` to indicate that you accepted the IBM License Agreement
+		- IIB_SKIPDEPLOY: Skip deployment of IIB applications, useful in development
+		- IIB_GLOBALCACHE: if set to `internal` the global cache on IIB is just enabled. If set to `external` the connection to an external IBM Extreme Scale is configured. This requires the following environment variables to be set:
+			- IIB_GC_USER: username to connect to IBM Extreme Scale
+			- IIB_GC_PASSWD: password to connect to IBM Extreme Scale
+			- IIB_GC_CATALOGENDPOINT: catalogendpoint to connect to IBM Extreme Scale
+			- IIB_GC_GRIDNAME gridname to connect to IBM Extreme Scale
+		The PKI Infrastructure can be configured as follows by setting the following env variables the iib configuration will be done by the base image automatically if both variables are available and the keystore:
+			- `IIB_KEYSTOREPW`: the keystore password, can be set as an environment variable or in the `pw.sh` file mounted under `/secret/pw.sh`.
+			- `IIB_TRUSTSTOREPW`: the truststore password, can be set as an environment variable or in the `pw.sh` file mounted under `/secret/pw.sh`.
+			- Add a keystore and truststore under `/secret/keystore.jks` and `/secret/truststore.jks` to enable HTTPS or SSL MQ.
+- Exposed Ports:
+		- 4414: Port of the IIB Admin WebUi and for remote debugging in IBM Integration Bus Toolkit
+		- 7800: Port of the HTTP Listener
 7. Build the image with a `docker-compose build`.
 8. Start the container locally with `docker-compose up` and test the application locally before checking your code into a
 repository like github or a container repository.
